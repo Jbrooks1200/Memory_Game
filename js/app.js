@@ -1,14 +1,14 @@
 // Globals
-var openCards = [];
+let openCards = [];
 let moves = 0 //Current number of moves the user has made.
 let moveCounter = document.querySelector(".moves");
-var matches = 0; //Current number of matches the user has made.
-var totalMatches = 8; //Total number of possible matches. Used to determine when the game is over.
-var allowClick = true; //This helps prevent an accidental double-click while waiting for the no-match timer.
-var startTime = new Date(); //Gets the start time of the game.
-var deck = document.querySelector(".deck"); //deck of all cards in the game
-var minutes = 0
-var seconds = 0
+let matches = 0; //Current number of matches the user has made.
+let totalMatches = 8; //Total number of possible matches. Used to determine when the game is over.
+let allowClick = true; //This helps prevent an accidental double-click while waiting for the no-match timer.
+let startTime = new Date(); //Gets the start time of the game.
+let deck = document.querySelector(".deck"); //deck of all cards in the game
+let minutes = 0
+let seconds = 0
 
 
 
@@ -18,13 +18,13 @@ $("#moveCount").text(moves);
 
 //Startup timer  that begins the in-game time.
 //Assign Variable that you use to pass into the ClearInterval() method.
-var timer = setInterval(beginClock, 1000);
-var finalTime = timer.innerHTML;
+let timer = setInterval(beginClock, 1000);
+let finalTime = timer.innerHTML;
 
 //Created a defined function rather than an anonymous one since we need to call this more than once.
 function beginClock()
 {   
-    var difference = new Date() - startTime;
+    let difference = new Date() - startTime;
     
     seconds++;
     if(seconds === 60) {
@@ -41,7 +41,7 @@ function stopClock()
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-      var currentIndex = array.length, temporaryValue, randomIndex;
+      let currentIndex = array.length, temporaryValue, randomIndex;
       while (0 !== currentIndex) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
@@ -57,7 +57,7 @@ function shuffleDeck()//Take shuffle function and applies it to the cards and ma
 {
   const cardsToShuffle = Array.from(document.querySelectorAll(".deck li"));
   //console.log("cards to shuffle", cardsToShuffle);
-  var shuffledCards = shuffle(cardsToShuffle);
+  let shuffledCards = shuffle(cardsToShuffle);
   //console.log("shuffled cards", shuffledCards)
   for(card of shuffledCards) {
     deck.appendChild(card);
@@ -66,7 +66,7 @@ function shuffleDeck()//Take shuffle function and applies it to the cards and ma
 };
   
 
-var state = "";
+let state = "";
 
 $(".card").click(function(e) 
 {
@@ -84,7 +84,7 @@ $(".card").click(function(e)
 function addOpenedCard(myCard) 
 {
 	  openCards.push(myCard);
-	  var len = openCards.length;
+	  let len = openCards.length;
 
 	  if (len > 1) //See if the user has opened the second card
 	  {
@@ -168,7 +168,7 @@ function removeStar() {
  
 //Helper Function to pad the minutes and seconds with a leading zero
 function pad(num, size) {
-	var s = num + "";
+	let s = num + "";
 	while (s.length < size) s = "0" + s;
 	return s;
 };
@@ -182,7 +182,7 @@ function modalStats() {
       $("#popup1").show();
 
       // declare star rating variable
-      var stars = document.querySelector(".stars").innerHTML;
+      let stars = document.querySelector(".stars").innerHTML;
       
 
       //showing move, rating, time on modal
