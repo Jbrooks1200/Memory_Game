@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <title>Matching Game</title>
     <meta name="description" content="">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <link rel="stylesheet" href="css/app.css">
@@ -24,9 +23,9 @@
         		<li><i class="fa fa-star"></i></li>
         	</ul>
 
-        	<span class="moves">0</span> Moves
+        	<span id="moveCount" class="moves">0</span> Moves
 
-            <span class="timer">0:00</span>
+            <span id="timer" class="timer">0:00</span>
             
 
             <div class="restart" onclick=startGame()>
@@ -85,16 +84,16 @@
             </li>
         </ul>
 
-        <div id="popup1" class="overlay">
+        <div id="popup1" class="overlay" style="display: none;">
             <div class="popup">
-                <h2>You Win</h2>h2>
+                <h2>You Win</h2>
                 <div class="content_1">
                     Your a winner
                 </div>
                 <div class="content_2">
-                    <p>You made <span id=finalMove> </span> moves </p>
-                    <p>in <span id=totalTime> </span> </p>
-                    <p>Rating: <span id=stars></span></p>
+                    <p>You made <span id="finalMove"> </span> moves </p>
+                    <p>in <span id="totalMinutes"> </span> minutes and <span id="totalSeconds"> </span> seconds</p>
+                    <p>Rating: <span id="stars"></span></p>
                 </div>
                 <button id="anotherRound"onclick="anotherRound()">
                     Another Round?
@@ -105,6 +104,5 @@
     </div>
 
     <script src="js/app.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
