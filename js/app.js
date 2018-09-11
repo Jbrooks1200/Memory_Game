@@ -76,6 +76,7 @@ $(".card").click(function(e)
   $(this).addClass("open");
   $(this).addClass("show");
   $(this).addClass("match");
+  $(this).addClass("disable");
       
   state = new_state
   addOpenedCard($(this).children("i")); //Passes in the current <li> that was clicked to the addOpenedCard function
@@ -112,25 +113,24 @@ function matched() {
 	//Just a loop to update both indexes
 	for (var i = 0; i <= 1; i++)
 	  {
-		  openCards[i].addClass("match", "disable");
+		  openCards[i].addClass("match");
+		  openCards[i].addClass("disable");
 		  openCards[i].removeClass("show");
 	  }
 	  matches++;
 	  openCards = [];
 	  if (matches == totalMatches)
 	  {
-      stopClock();
-      //Game Over! Set your stats here
-      modalStats();
-      
-       
-    }
-    
-};
+           //Game Over! Set your stats here
+           modalStats();    
+          }  
+ };
 
 function notMatched() {
   openCards[0].parent().addClass("unmatched");
   openCards[1].parent().addClass("unmatched");
+  openCards[0].parent().removeClass("disable");
+  openCards[1].parent().removeClass("disable");
   
   setTimeout(function() {
 	  //This is the timer that shows the no-match cards for 1/2 second to give visual feedback and then resets them back to their original state.
@@ -177,9 +177,12 @@ function modalStats() {
  
     if (totalMatches = 8){
       clearInterval(timer);
+      stopClock();
+      finalTime = timer.innerHTML;
 
       // show congratulations modal
       $("#popup1").show();
+      $(".overlay").show();
 
       // declare star rating variable
       let stars = document.querySelector(".stars").innerHTML;
@@ -197,6 +200,7 @@ function modalStats() {
 
 
 function startGame() {
+  clearInterval(timer);
   resetClock();
   shuffleDeck();
   removeClasses();
@@ -204,6 +208,7 @@ function startGame() {
   resetStars();
   openCards = [];
   $("#popup1").hide();
+  timer = setInterval(beginClock, 1000);
 }
 
 function resetClock() {
@@ -215,7 +220,7 @@ $("#timer").text("00:00");
 }
 
 function resetMoves() {
-  let moves = 0
+  moves = 0
   moveCounter.innerHTML = moves
 }
 
